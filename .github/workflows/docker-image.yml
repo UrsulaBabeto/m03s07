@@ -20,16 +20,7 @@ jobs:
     - run: npm run build 
     - run: npm test -- --watchAll=false
 
-    - name: Builds Docker image
-      run: docker build -t ecommerce:latest .
-    - name: Login
-      uses: docker/login-action@v1
-      with:
-        username: ${{ vars.DOCKERHUB_USUARIO }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - name: Push Image
-      run: docker push ecommerce
-    
+   
   deploy: 
     runs-on: ubuntu-latest
     name: deploy cd 
