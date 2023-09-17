@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Configura o node 
+    - name: node Settings 
       uses: actions/setup-node@v3
       with:
         node-version: 18.x
@@ -19,6 +19,16 @@ jobs:
     - run: npm i
     - run: npm run build 
     - run: npm test -- --watchAll=false
+
+    - name: Builds Docker image
+      run: docker build -t ecommerce:latest .
+    - name: Login
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USUARIO }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Push Image
+      run: docker push ecommerce
     
   deploy: 
     runs-on: ubuntu-latest
