@@ -22,7 +22,6 @@ jobs:
 
     - name: Builds Docker image
       run: docker build -t ecommerce:latest .
-      working-directory: ./app
     - name: Login
       uses: docker/login-action@v3
       with:
