@@ -21,7 +21,8 @@ jobs:
     - run: npm test -- --watchAll=false
 
     - name: Builds Docker image
-      run: docker build -t ecommerce .
+      run: docker build -t ecommerce:latest .
+      working-directory: ./app
     - name: Login
       uses: docker/login-action@v3
       with:
